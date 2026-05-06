@@ -1,0 +1,256 @@
+
+# 1. Variables
+
+Variables are used to **store data** in Python.
+
+### Example:
+
+name = "Zain"
+age = 22
+is_student = True
+
+
+### What this means:
+
+* `name` stores text
+* `age` stores a number
+* `is_student` stores True/False
+
+### Real-life example:
+
+A variable is like a **labeled box** where you store something.
+
+* Box labeled `name` → contains `"Zain"`
+* Box labeled `age` → contains `22`
+
+---
+
+# 2. Lists
+
+A list stores **multiple values in one variable**.
+
+### Example:
+
+
+fruits = ["apple", "banana", "mango"]
+
+
+Now `fruits` contains 3 items.
+
+### Access items:
+
+
+print(fruits[0])   # apple
+print(fruits[1])   # banana
+```
+
+### Real-life example:
+
+A list is like a **shopping list**.
+
+
+shopping = ["milk", "bread", "eggs"]
+
+
+---
+
+# 3. Dictionaries (`dict`)
+
+A dictionary stores data in **key-value pairs**.
+
+### Example:
+
+
+student = {
+    "name": "Zain",
+    "age": 22,
+    "city": "Rawalpindi"
+}
+```
+
+### Access values:
+
+```python
+print(student["name"])   # Zain
+print(student["city"])   # Rawalpindi
+```
+
+### Real-life example:
+
+A dictionary is like a **student form**:
+
+* Name → Zain
+* Age → 22
+* City → Rawalpindi
+
+---
+
+# 4. Loops
+
+Loops repeat code again and again.
+
+### Example 1: `for` loop
+
+```python
+for i in range(5):
+    print(i)
+```
+
+### Output:
+
+
+0
+1
+2
+3
+4
+```
+
+This runs 5 times.
+
+### Example 2: loop through list
+
+```python
+fruits = ["apple", "banana", "mango"]
+
+for fruit in fruits:
+    print(fruit)
+```
+
+### Output:
+
+```python
+apple
+banana
+mango
+```
+
+### Real-life example:
+
+A loop is like checking every item in a shopping bag one by one.
+
+---
+
+# 5. Functions
+
+Functions are reusable blocks of code.
+
+Instead of writing same code again and again, put it in a function.
+
+### Example:
+
+```python
+def greet(name):
+    print("Hello", name)
+```
+
+### Use it:
+
+
+greet("Zain")
+greet("Ali")
+
+
+### Output:
+
+
+Hello Zain
+Hello Ali
+
+
+### Real-life example:
+
+A function is like a **machine**:
+
+* input goes in
+* output comes out
+
+---
+
+# 6. Classes
+
+Classes are used to create your own objects.
+
+This is an important concept in **OOP (Object-Oriented Programming)**.
+
+### Example:
+
+```python
+class Student:
+    def __init__(self, name, age):
+        self.name = name
+        self.age = age
+
+    def show(self):
+        print(self.name, self.age)
+```
+
+### Create object:
+
+```python
+s1 = Student("Zain", 22)
+s1.show()
+```
+
+### Output:
+
+```python
+Zain 22
+```
+
+### Real-life example:
+
+A class is like a **blueprint** of a student.
+
+Blueprint says every student has:
+
+* name
+* age
+
+Then you create real students from it.
+
+---
+
+# 7. Error Handling
+
+Error handling prevents program crashes.
+
+### Example:
+
+
+try:
+    num = int(input("Enter number: "))
+    print(10 / num)
+
+except ZeroDivisionError:
+    print("Cannot divide by zero")
+
+except ValueError:
+    print("Invalid input")
+```
+
+### What this does:
+
+* If user enters `0` → catches divide error
+* If user enters text → catches invalid input
+
+### Real-life example:
+
+Error handling is like a **safety system** in your program.
+
+---
+
+# 8. Practice on HackerRank / Replit
+
+This means:
+
+### HackerRank
+
+Use it to practice coding problems:
+
+* loops
+* functions
+* strings
+* algorithms
+
+
