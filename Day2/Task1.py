@@ -10,12 +10,15 @@ Given an integer n, perform the following conditional actions:
 Input Format:
 A single line containing a positive integer n.
 
+
 Output Format:
 Print "Weird" or "Not Weird" based on conditions.
 """
 
 # Read input
 n = int(input())
+
+
 
 # Conditions
 if n % 2 != 0:
