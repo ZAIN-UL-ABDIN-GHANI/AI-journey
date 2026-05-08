@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>AI Chat Bot</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="/static/style.css"/>
+</head>
+<body>
+
+  <!-- Ambient background glows -->
+  <div class="bg-glow bg-glow-1"></div>
+  <div class="bg-glow bg-glow-2"></div>
+  <div class="bg-glow bg-glow-3"></div>
+
+  <div class="container">
+
+    <div class="header">
+      <div class="header-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
+             stroke-linecap="round" stroke-linejoin="round">
+          <path d="M12 2a8 8 0 0 1 8 8v1a4 4 0 0 1-4 4H8a4 4 0 0 1-4-4V10a8 8 0 0 1 8-8z"/>
+          <path d="M9 17v1a3 3 0 0 0 6 0v-1"/>
+          <circle cx="9" cy="10" r="1" fill="currentColor"/>
+          <circle cx="15" cy="10" r="1" fill="currentColor"/>
+        </svg>
+      </div>
+      <div class="header-text">
+        <h1>AI Chat Bot</h1>
+        <span class="status"><span class="status-dot"></span>Online &amp; ready</span>
+      </div>
+    </div>
+
+    <div id="chat-box">
+      <div class="empty-state">
+        <div class="empty-icon">✦</div>
+        <p>Start a conversation below</p>
+      </div>
+    </div>
+
+    <div class="input-row">
+      <input type="text" id="userInput" placeholder="Type your message…" autocomplete="off"
+             onkeydown="if(event.key==='Enter') sendMessage()"/>
+      <button onclick="sendMessage()">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"
+             stroke-linecap="round" stroke-linejoin="round">
+          <line x1="22" y1="2" x2="11" y2="13"/>
+          <polygon points="22 2 15 22 11 13 2 9 22 2"/>
+        </svg>
+      </button>
+    </div>
+
+  </div>
+
+  <script>
+    async function sendMessage() {
+      let input = document.getElementById("userInput");
+      let message = input.value.trim();
+      if (!message) return;
+
+      let box = document.getElementById("chat-box");
+
+      // Remove empty state on first message
+      let empty = box.querySelector(".empty-state");
+      if (empty) empty.remove();
+
+      // Show user message
+      let userDiv = document.createElement("div");
+      userDiv.className = "msg user";
+      userDiv.innerHTML = `<div class="bubble">${message}</div><div class="avatar user-av">U</div>`;
+      box.appendChild(userDiv);
+      input.value = "";
+      box.scrollTop = box.scrollHeight;
+
+      // Typing indicator
+      let typing = document.createElement("div");
+      typing.className = "msg bot";
+      typing.id = "typing";
+      typing.innerHTML = `<div class="avatar bot-av">AI</div><div class="bubble typing-bubble"><span></span><span></span><span></span></div>`;
+      box.appendChild(typing);
+      box.scrollTop = box.scrollHeight;
+
+      // Call backend
+      try {
+        let response = await fetch("/chat", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ text: message })
+        });
+        let data = await response.json();
+
+        document.getElementById("typing")?.remove();
+
+        let botDiv = document.createElement("div");
+        botDiv.className = "msg bot";
+        botDiv.innerHTML = `<div class="avatar bot-av">AI</div><div class="bubble">${data.response}</div>`;
+        box.appendChild(botDiv);
+        box.scrollTop = box.scrollHeight;
+
+      } catch (e) {
+        document.getElementById("typing")?.remove();
+        let errDiv = document.createElement("div");
+        errDiv.className = "msg bot";
+        errDiv.innerHTML = `<div class="avatar bot-av">AI</div><div class="bubble error">Connection error. Try again.</div>`;
+        box.appendChild(errDiv);
+        box.scrollTop = box.scrollHeight;
+      }
+    }
+  </script>
+
+</body>
+</html>
