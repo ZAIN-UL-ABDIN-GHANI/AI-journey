@@ -9,9 +9,11 @@ import os
 from groq import Groq   # 👈 NEW (Groq instead of OpenAI)
 
 # ===================== LOAD ENV =====================
+
 load_dotenv()
 
 # ===================== APP INIT =====================
+
 app = FastAPI()
 
 # ===================== GROQ CLIENT =====================

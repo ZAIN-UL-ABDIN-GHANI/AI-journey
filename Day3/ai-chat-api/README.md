@@ -4,7 +4,7 @@ Here’s a **clean, professional GitHub README** for your **Python + FastAPI + H
 
 # 🤖 AI Chat Web App (FastAPI + HTML + CSS)
 
-A simple full-stack AI chatbot web application built using **Python (FastAPI)** for backend and **HTML/CSS/JavaScript** for frontend. The app connects to **Groq AI API / OpenAI API** to generate smart responses in real time.
+A simple full-stack AI chatbot web application built using **Python (FastAPI)** for backend and **HTML/CSS/JavaScript** for frontend. The app connects to **Groq AI API / OpenAI API** to generate smart responses in real  time.
 
 ---
 
